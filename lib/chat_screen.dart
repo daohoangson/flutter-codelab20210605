@@ -102,7 +102,8 @@ class ChatMessage extends StatelessWidget {
         subtitle: Text(text),
         leading: CircleAvatar(child: Text(name[0])),
       ),
-      sizeFactor: animationController,
+      sizeFactor:
+          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
     );
   }
 }
