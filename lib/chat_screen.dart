@@ -8,6 +8,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: TextField(
+              controller: _textController,
               decoration: InputDecoration(
                 hintText: 'Send a message',
               ),
@@ -33,14 +36,16 @@ class _ChatScreenState extends State<ChatScreen> {
           IconTheme(
             child: IconButton(
               icon: Icon(Icons.send),
-              onPressed: () {
-                print('Send');
-              },
+              onPressed: () => _handleSubmitted(_textController.text),
             ),
             data: IconThemeData(color: Theme.of(context).accentColor),
           )
         ],
       ),
     );
+  }
+
+  void _handleSubmitted(String text) {
+    print('_handleSubmitted OK');
   }
 }
