@@ -27,9 +27,14 @@ class _ChatScreenState extends State<ChatScreen> {
             child: ListView.builder(
               itemBuilder: (context, index) => _messages[index],
               itemCount: _messages.length,
+              padding: EdgeInsets.all(8),
+              reverse: true,
             ),
           ),
-          _buildTextComposer(),
+          Container(
+            child: _buildTextComposer(),
+            color: Theme.of(context).secondaryHeaderColor,
+          ),
         ],
       ),
     );
