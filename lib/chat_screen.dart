@@ -9,8 +9,17 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   final _focusNode = FocusNode();
-  final _messages = <Widget>[];
+  final _messages = <ChatMessage>[];
   final _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    for (final message in _messages) {
+      message.animationController.dispose();
+    }
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
