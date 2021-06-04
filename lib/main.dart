@@ -60,6 +60,9 @@ class _RandomWordsState extends State<RandomWords> {
         Icons.favorite,
         color: alreadySaved ? Colors.red : null,
       ),
+      onTap: () {
+        print('onTap $index');
+      },
     );
   }
 }
