@@ -78,6 +78,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     setState(() => _messages.insert(0, message));
 
     _focusNode.requestFocus();
+    animationController.forward();
   }
 }
 
