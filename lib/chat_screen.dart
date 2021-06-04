@@ -12,6 +12,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   final _messages = <ChatMessage>[];
   final _textController = TextEditingController();
 
+  var _isComposing = false;
+
   @override
   void dispose() {
     for (final message in _messages) {
@@ -58,7 +60,12 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                 hintText: 'Send a message',
               ),
               focusNode: _focusNode,
-              onSubmitted: _handleSubmitted,
+              onChanged: (text) {
+                setState(() {
+                  _isComposing = text.isNotEmpty;
+                });
+              },
+              onSubmitted: _isComposing ? _handleSubmitted : null,
             ),
           ),
           IconTheme(
