@@ -47,6 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: InputDecoration(
                 hintText: 'Send a message',
               ),
+              onSubmitted: _handleSubmitted,
             ),
           ),
           IconTheme(
