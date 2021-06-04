@@ -79,12 +79,28 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   void _pushSaved() {
+    final savedList = _saved.toList();
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => Scaffold(
           appBar: AppBar(),
-          body: Center(
-            child: Text('Hello Material!'),
+          body: ListView.builder(
+            itemBuilder: (context, i) {
+              if (i.isOdd) {
+                return Divider();
+              }
+
+              final index = i ~/ 2;
+              final pair = savedList[index];
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: TextStyle(fontSize: 20),
+                ),
+              );
+            },
+            itemCount: savedList.length * 2,
           ),
         ),
       ),
