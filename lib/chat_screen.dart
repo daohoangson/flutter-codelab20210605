@@ -8,6 +8,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _focusNode = FocusNode();
   final _messages = <Widget>[];
   final _textController = TextEditingController();
 
@@ -47,6 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: InputDecoration(
                 hintText: 'Send a message',
               ),
+              focusNode: _focusNode,
               onSubmitted: _handleSubmitted,
             ),
           ),
@@ -66,6 +68,8 @@ class _ChatScreenState extends State<ChatScreen> {
     _textController.clear();
     final message = ChatMessage(name: 'son.dao', text: text);
     setState(() => _messages.insert(0, message));
+
+    _focusNode.requestFocus();
   }
 }
 
