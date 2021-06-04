@@ -71,7 +71,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           IconTheme(
             child: IconButton(
               icon: Icon(Icons.send),
-              onPressed: () => _handleSubmitted(_textController.text),
+              onPressed: _isComposing
+                  ? () => _handleSubmitted(_textController.text)
+                  : null,
             ),
             data: IconThemeData(color: Theme.of(context).accentColor),
           )
@@ -91,7 +93,11 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       name: 'son.dao',
       text: text,
     );
-    setState(() => _messages.insert(0, message));
+
+    setState(() {
+      _messages.insert(0, message);
+      _isComposing = false;
+    });
 
     _focusNode.requestFocus();
     animationController.forward();
