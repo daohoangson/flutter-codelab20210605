@@ -1,6 +1,8 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
+import 'chat_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -31,6 +33,10 @@ class _RandomWordsState extends State<RandomWords> {
       appBar: AppBar(
         title: Text('Startup Name Generator'),
         actions: [
+          IconButton(
+            icon: Icon(Icons.chat_bubble),
+            onPressed: _pushChat,
+          ),
           IconButton(
             icon: Icon(Icons.list),
             onPressed: _pushSaved,
@@ -76,6 +82,14 @@ class _RandomWordsState extends State<RandomWords> {
           }
         });
       },
+    );
+  }
+
+  void _pushChat() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ChatScreen(),
+      ),
     );
   }
 
