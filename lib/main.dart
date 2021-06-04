@@ -29,6 +29,12 @@ class _RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Startup Name Generator'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.list),
+            onPressed: _pushSaved,
+          )
+        ],
       ),
       body: ListView.builder(
         itemBuilder: (context, i) {
@@ -70,5 +76,9 @@ class _RandomWordsState extends State<RandomWords> {
         });
       },
     );
+  }
+
+  void _pushSaved() {
+    print('Hello');
   }
 }
