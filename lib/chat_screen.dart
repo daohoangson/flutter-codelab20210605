@@ -7,7 +7,7 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   final _focusNode = FocusNode();
   final _messages = <Widget>[];
   final _textController = TextEditingController();
@@ -66,7 +66,15 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _handleSubmitted(String text) {
     _textController.clear();
-    final message = ChatMessage(name: 'son.dao', text: text);
+    final animationController = AnimationController(
+      duration: Duration(milliseconds: 500),
+      vsync: this,
+    );
+    final message = ChatMessage(
+      animationController: animationController,
+      name: 'son.dao',
+      text: text,
+    );
     setState(() => _messages.insert(0, message));
 
     _focusNode.requestFocus();
@@ -74,11 +82,16 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class ChatMessage extends StatelessWidget {
+  final AnimationController animationController;
   final String name;
   final String text;
 
-  const ChatMessage({Key? key, required this.name, required this.text})
-      : super(key: key);
+  const ChatMessage({
+    required this.animationController,
+    Key? key,
+    required this.name,
+    required this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
