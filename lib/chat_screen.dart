@@ -14,6 +14,23 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text('ChatScreen'),
       ),
+      body: _buildTextComposer(),
+    );
+  }
+
+  Widget _buildTextComposer() {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(),
+        ),
+        IconButton(
+          icon: Icon(Icons.send),
+          onPressed: () {
+            print('Send');
+          },
+        )
+      ],
     );
   }
 }
