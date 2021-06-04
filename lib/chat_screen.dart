@@ -8,11 +8,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final _messages = <Widget>[
-    ListTile(title: Text('Message')),
-    ListTile(title: Text('Message')),
-    ListTile(title: Text('Message')),
-  ];
+  final _messages = <Widget>[];
   final _textController = TextEditingController();
 
   @override
@@ -66,7 +62,25 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _handleSubmitted(String text) {
-    final message = ListTile(title: Text(text));
+    _textController.clear();
+    final message = ChatMessage(name: 'son.dao', text: text);
     setState(() => _messages.insert(0, message));
+  }
+}
+
+class ChatMessage extends StatelessWidget {
+  final String name;
+  final String text;
+
+  const ChatMessage({Key? key, required this.name, required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(name),
+      subtitle: Text(text),
+      leading: CircleAvatar(child: Text(name[0])),
+    );
   }
 }
