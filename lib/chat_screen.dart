@@ -66,6 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _handleSubmitted(String text) {
-    print('_handleSubmitted OK');
+    final message = ListTile(title: Text(text));
+    setState(() => _messages.insert(0, message));
   }
 }
