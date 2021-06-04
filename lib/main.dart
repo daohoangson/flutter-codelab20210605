@@ -54,6 +54,9 @@ class _RandomWordsState extends State<RandomWords> {
         '$index. ${pair.asPascalCase}',
         style: TextStyle(fontSize: 20),
       ),
+      trailing: Icon(
+        Icons.favorite,
+      ),
     );
   }
 }
