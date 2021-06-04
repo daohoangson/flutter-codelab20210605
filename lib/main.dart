@@ -49,6 +49,8 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(int index, WordPair pair) {
+    final alreadySaved = index % 3 == 1;
+
     return ListTile(
       title: Text(
         '$index. ${pair.asPascalCase}',
@@ -56,6 +58,7 @@ class _RandomWordsState extends State<RandomWords> {
       ),
       trailing: Icon(
         Icons.favorite,
+        color: alreadySaved ? Colors.red : null,
       ),
     );
   }
