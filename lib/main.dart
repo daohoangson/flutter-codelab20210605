@@ -79,6 +79,15 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   void _pushSaved() {
-    print('Hello');
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, anim1, anim2) => Scaffold(
+          appBar: AppBar(),
+          body: Center(
+            child: Text('Hello'),
+          ),
+        ),
+      ),
+    );
   }
 }
