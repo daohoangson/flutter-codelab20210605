@@ -96,10 +96,13 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(name),
-      subtitle: Text(text),
-      leading: CircleAvatar(child: Text(name[0])),
+    return SizeTransition(
+      child: ListTile(
+        title: Text(name),
+        subtitle: Text(text),
+        leading: CircleAvatar(child: Text(name[0])),
+      ),
+      sizeFactor: animationController,
     );
   }
 }
