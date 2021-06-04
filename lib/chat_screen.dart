@@ -8,6 +8,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _messages = <Widget>[
+    ListTile(title: Text('Message')),
+    ListTile(title: Text('Message')),
+    ListTile(title: Text('Message')),
+  ];
   final _textController = TextEditingController();
 
   @override
@@ -16,7 +21,17 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text('ChatScreen'),
       ),
-      body: _buildTextComposer(),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) => _messages[index],
+              itemCount: _messages.length,
+            ),
+          ),
+          _buildTextComposer(),
+        ],
+      ),
     );
   }
 
