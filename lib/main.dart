@@ -10,12 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Startup Name Generator',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Startup Name Generator'),
-        ),
-        body: RandomWords(),
-      ),
+      home: RandomWords(),
     );
   }
 }
@@ -31,21 +26,25 @@ class _RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, i) {
-        if (i.isOdd) {
-          return Divider();
-        }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Startup Name Generator'),
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, i) {
+          if (i.isOdd) {
+            return Divider();
+          }
 
-        final index = i ~/ 2;
-        // print('i=$i index=$index');
-        if (index >= _suggestions.length) {
-          final tenMore = generateWordPairs().take(10);
-          _suggestions.addAll(tenMore);
-        }
+          final index = i ~/ 2;
+          if (index >= _suggestions.length) {
+            final tenMore = generateWordPairs().take(10);
+            _suggestions.addAll(tenMore);
+          }
 
-        return _buildRow(index, _suggestions[index]);
-      },
+          return _buildRow(index, _suggestions[index]);
+        },
+      ),
     );
   }
 
