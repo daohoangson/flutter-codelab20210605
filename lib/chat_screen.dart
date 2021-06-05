@@ -118,14 +118,17 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(
-      child: ListTile(
-        title: Text(name),
-        subtitle: Text(text),
-        leading: CircleAvatar(child: Text(name[0])),
+    return FadeTransition(
+      child: SizeTransition(
+        child: ListTile(
+          title: Text(name),
+          subtitle: Text(text),
+          leading: CircleAvatar(child: Text(name[0])),
+        ),
+        sizeFactor:
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
       ),
-      sizeFactor:
-          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+      opacity: animationController,
     );
   }
 }
