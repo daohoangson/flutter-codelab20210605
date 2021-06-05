@@ -20,6 +20,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       message.animationController.dispose();
     }
 
+    _focusNode.dispose();
+    _textController.dispose();
+
     super.dispose();
   }
 
